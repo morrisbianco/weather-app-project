@@ -1,30 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Document</title>
 </head>
-<body>
-    <div class="header">
-        <h1>Weather Dashboard</h1>
-    </div>
-    <div class="search">
-        <p id="searchText">Search for a City:</p>
-        <input type="text" name="name" placeholder="Charlotte">
-        <button>Search</button>
-    </div>
-    <div class="cityWeather">
-        
-    </div>
-    <div class="searchHistory">
 
+<body class="bg-light">
+    <header class="navbar navbar-expand-lg navbar-light bg-light">Weather Dashboard</header>
+    <div class="row">
+    <div class="col-4 min-100-vh">
+        <div class="flex-column align-center bg-light p-5">
+            <h2 class="" id="searchText">Search for a City:</h2>
+            <form id="search-form" class="form">
+                <input id="cityInput" class="form-input" type="text" placeholder="Charlotte">
+                <button id="submitBtn" class="btn btn-info">Search</button>
+            </form>
+        </div>
     </div>
-    <div class="forcast">
-        
+        <div class="col-8 text-dark border border-dark bg-white">
+            <h2 id="result-text"></h2>
+            <div id="cityWeather"></div>
+        </div>
+        <div class="col-4 text-dark">
+            <div class="flex-column justify-content-center p-5 border-top border-dark" id="searchHistory">
+                <button>Las Vegas</button>
+                <button>Las Vegas</button>
+                <button>Las Vegas</button>
+                <button>Las Vegas</button>
+                <button>Las Vegas</button>
+            </div>
+        </div>
+        <div class="col-8 text-dark">
+            <h2>5-Day Forecast:</h2>
+            <div class="row">
+            <div class="card col" id="forecast"></div>
+        </div>
+        </div>
     </div>
     <script src="./assets/js/script.js"></script>
 </body>
+
 </html>
