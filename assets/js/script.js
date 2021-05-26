@@ -18,6 +18,9 @@ var submitBtn = document.querySelector("#submitBtn");
 var input = document.querySelector("#cityInput");
 var cityBox = document.querySelector("#cityWeather");
 var forecast = document.querySelector("#forecast");
+var forecastTemp = document.querySelector("#forecastTemp");
+var forecastWind = document.querySelector("#forecastWind");
+var forecastHumidity = document.querySelector("#forecastHumidity");
 
 var formSubmitHandler = function (event) {
     event.preventDefault();
@@ -64,7 +67,8 @@ var getCity = function (city) {
 };
 
 var getForecast = function (city) {
-    var forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=" + APIkey
+    var forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&cnt=5&appid=" + APIkey;
+
     fetch(forecastUrl)
     .then(function (response) {
         if (response.ok) {
@@ -131,9 +135,9 @@ var displayWeather = function (weather) {
 var displayForecast = function (forecast) {
     console.log(forecast);
 
-  var forecastTemp = forecast.main.temp;
-  var forecastWind = forecast.wind.speed;
-  var forecastHumidity = forecast.main.humidity;
+  var forecastTemp = forecast.list[0].main.temp;
+  var forecastWind = forecast.list[0].wind.speed;
+  var forecastHumidity = forecast.list[0].main.humidity;
  
   var forecastTempEl = document.createElement('div');
   var forecastWindEl = document.createElement('div');
@@ -147,17 +151,17 @@ var displayForecast = function (forecast) {
   var forecastWindSEl = document.createElement('span');
   var forecastHumidity2El = document.createElement('span');
   
-  forecastTemp2El.textContent = "Temp: " + forecastTemp;
-  forecastWindSEl.textContent = "Wind: " + forecastWind;
-  forecastHumidity2El.textContent = "Humidity: " + forecastHumidity;
+  forecastTemp2El.textContent = "Temp: " + forecastTemp + "°F";
+  forecastWindSEl.textContent = "Wind: " + forecastWind + " MPH";
+  forecastHumidity2El.textContent = "Humidity: " + forecastHumidity + " %";
   
   forecastTempEl.appendChild(forecastTemp2El);
   forecastWindEl.appendChild(forecastWindSEl);
   forecastHumidityEl.appendChild(forecastHumidity2El);
   
-  cityBox.appendChild(forecastTempEl);
-  cityBox.appendChild(forecastWindEl);
-  cityBox.appendChild(forecastHumidityEl);
+  forecastTemp.appendChild(forecastTempEl);
+  forecastWind.appendChild(forecastWindEl);
+  forecastHumidity.appendChild(forecastHumidityEl);
 
 
 };
