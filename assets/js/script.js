@@ -7,7 +7,7 @@
 // WHEN I view the UV index DONE
 // THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe
 // WHEN I view future weather conditions for that city DONE
-// THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, 
+// THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, DONE
 // the temperature, the wind speed, and the humidity DONE
 // WHEN I click on a city in the search history
 // THEN I am again presented with current and future conditions for that city
@@ -59,21 +59,10 @@ var formSubmitHandler = function (event) {
     }
 
     var historyBtn = document.createElement('button');
-    historyBtn.classList = 'btn btn-info';
+    historyBtn.classList = 'btn btn-info button-block m-2';
     historyBtn.textContent = city;
     searchHistory.appendChild(historyBtn);
 };
-
-// document.addEventListener("click", function (event) {
-//     var element = event.target.className(".srchBtn");
-//     var history = element.textContent;
-
-//     if (history) {
-//         getCity(history);
-//         getForecast(history);
-//         input.value = '';
-//     }
-// });
 
 var getCity = function (city) {
     var queryUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + APIkey;
@@ -94,8 +83,8 @@ var getCity = function (city) {
                 }).then(function (uvdata) {
                     var uv = uvdata.current.uvi
                     var uvEl = document.createElement('div');
-                    uvEl.classList = 'list-item p-1';
                     var uv2El = document.createElement('span');
+                    uv2El.classList = 'list-item p-2'
                     uv2El.textContent = "UV Index: " + uv;
                     uvEl.appendChild(uv2El);
                     cityBox.appendChild(uvEl);

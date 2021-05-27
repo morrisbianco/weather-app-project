@@ -1,96 +1,11 @@
-/* * {
-    box-sizing: border-box;
+.good {
+    background-color: green;
 }
 
-.header {
-    text-align: center;
-    font-family: 'Times New Roman', Times, serif;
-    font-weight: bold;
+.bad {
+    background-color: yellow;
 }
 
-.search {
-    border-bottom: 2px solid black;
-    width: 400px;
-    height: 200px;
-    justify-content: center;
-    float: left;
-    
+.severe {
+    background-color: red;
 }
-
-#searchText {
-    font-size: 40px;
-    margin: 0;
-    padding: 5px;
-    font-family: 'Times New Roman', Times, serif;
-    font-weight: bold;
-}
-
-input {
-    display: block;
-    padding: 15px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    width: 390px;
-    border-radius: 10px;
-    margin-left: 3px;
-    font-size: 20px;
-}
-
-button {
-    display: block;
-    padding: 15px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    width: 390px;
-    border-radius: 10px;
-    margin-left: 3px;
-    background-color: lightblue;
-    font-size: 20px;
-}
-
-.searchHistory {
-    height: 490px;
-    width: 400px;
-    margin-top: 210px;
-    float: left;
-    position: absolute;
-    
-}
-
-.historyBtns {
-    display: block;
-    padding: 15px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    width: 390px;
-    border-radius: 10px;
-    margin-left: 3px;
-    background-color: lightslategray;
-    font-size: 20px;
-    color: white;
-    margin-top: 20px;
-}
-
-.cityWeather {
-    display: flex;
-    justify-content: flex-end;
-    width: 950px;
-    height: 400px;
-    margin-left: 30px;
-    float: left;
-    border: 2px solid black;
-    border-bottom: 2px solid lightgray;
-    background-color: whitesmoke;
-}
-
-.forcast {
-    display: flex;
-    justify-content: flex-end;
-    width: 950px;
-    height: 300px;
-    margin-left: 430px;
-    float: left;
-    border: 2px solid black;
-    border-top: none;
-    background-color: whitesmoke;
-} */
