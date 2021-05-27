@@ -1,14 +1,14 @@
-// GIVEN a weather dashboard with form inputs
-// WHEN I search for a city
-// THEN I am presented with current and future conditions for that city and that city is added to the search history
-// WHEN I view current weather conditions for that city
-// THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, 
-// the humidity, the wind speed, and the UV index
-// WHEN I view the UV index
+// GIVEN a weather dashboard with form inputs DONE
+// WHEN I search for a city DONE
+// THEN I am presented with current and future conditions for that city and that city is added to the search history 
+// WHEN I view current weather conditions for that city DONE
+// THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, DONE
+// the humidity, the wind speed, and the UV index DONE
+// WHEN I view the UV index DONE
 // THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe
-// WHEN I view future weather conditions for that city
+// WHEN I view future weather conditions for that city DONE
 // THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, 
-// the temperature, the wind speed, and the humidity
+// the temperature, the wind speed, and the humidity DONE
 // WHEN I click on a city in the search history
 // THEN I am again presented with current and future conditions for that city
 
@@ -18,153 +18,218 @@ var submitBtn = document.querySelector("#submitBtn");
 var input = document.querySelector("#cityInput");
 var cityBox = document.querySelector("#cityWeather");
 var forecast = document.querySelector("#forecast");
-var forecastTemp = document.querySelector("#forecastTemp");
-var forecastWind = document.querySelector("#forecastWind");
-var forecastHumidity = document.querySelector("#forecastHumidity");
+var forecastTimeEl = document.querySelector(".forecastTime0");
+var forecasticonEl = document.querySelector(".forecastIcon0");
+var forecastTempEl = document.querySelector(".forecastTemp0");
+var forecastWindEl = document.querySelector(".forecastWind0");
+var forecastHumidityEl = document.querySelector(".forecastHumidity0");
+var forecastTimeEl1 = document.querySelector(".forecastTime1");
+var forecasticonEl1 = document.querySelector(".forecastIcon1");
+var forecastTempEl1 = document.querySelector(".forecastTemp1");
+var forecastWindEl1 = document.querySelector(".forecastWind1");
+var forecastHumidityEl1 = document.querySelector(".forecastHumidity1");
+var forecastTimeEl2 = document.querySelector(".forecastTime2");
+var forecasticonEl2 = document.querySelector(".forecastIcon2");
+var forecastTempEl2 = document.querySelector(".forecastTemp2");
+var forecastWindEl2 = document.querySelector(".forecastWind2");
+var forecastHumidityEl2 = document.querySelector(".forecastHumidity2");
+var forecastTimeEl3 = document.querySelector(".forecastTime3");
+var forecasticonEl3 = document.querySelector(".forecastIcon3");
+var forecastTempEl3 = document.querySelector(".forecastTemp3");
+var forecastWindEl3 = document.querySelector(".forecastWind3");
+var forecastHumidityEl3 = document.querySelector(".forecastHumidity3");
+var forecastTimeEl4 = document.querySelector(".forecastTime4");
+var forecasticonEl4 = document.querySelector(".forecastIcon4");
+var forecastTempEl4 = document.querySelector(".forecastTemp4");
+var forecastWindEl4 = document.querySelector(".forecastWind4");
+var forecastHumidityEl4 = document.querySelector(".forecastHumidity4");
+var searchHistory = document.querySelector("#searchHistory");
 
 var formSubmitHandler = function (event) {
     event.preventDefault();
-    
+
     var city = input.value.trim();
-    
+
     if (city) {
         getCity(city);
         getForecast(city);
         input.value = '';
     } else {
-        alert('Please enter a city');
+        return;
     }
+
+    var historyBtn = document.createElement('button');
+    historyBtn.classList = 'btn btn-info';
+    historyBtn.textContent = city;
+    searchHistory.appendChild(historyBtn);
 };
 
-// var buttonClickHandler = function (event) {
-//     var language = event.target.getAttribute('data-language');
-    
-//     if (language) {
-//         getFeaturedRepos(language);
-        
-//         repoContainerEl.textContent = '';
+// document.addEventListener("click", function (event) {
+//     var element = event.target.className(".srchBtn");
+//     var history = element.textContent;
+
+//     if (history) {
+//         getCity(history);
+//         getForecast(history);
+//         input.value = '';
 //     }
-// };
+// });
 
 var getCity = function (city) {
     var queryUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + APIkey;
-    
+
     fetch(queryUrl)
-    .then(function (response) {
-        if (response.ok) {
-        return response.json();
-      } else {
-        alert('Error: ' + response.statusText);
-      }
-    })
-    .then(function (cityWeather) {
-        console.log(cityWeather);
-        displayWeather(cityWeather, city);
-    })
-    .catch(function (error) {
-        alert('Unable to connect to Weather API');
-    });
-};
-
-var getForecast = function (city) {
-    var forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&cnt=5&appid=" + APIkey;
-
-    fetch(forecastUrl)
-    .then(function (response) {
-        if (response.ok) {
-        return response.json();
-      } else {
-        alert('Error: ' + response.statusText);
-      }
-    })
-    .then(function (cityForecast) {
-        console.log(cityForecast);
-        displayForcast(cityForcast, city);
-    })
-    .catch(function (error) {
-      alert('Unable to connect to Weather Forcast API');
-    });
-};
-// var getFeaturedRepos = function (language) {
-//   var apiUrl = 'https://api.github.com/search/repositories?q=' + language + '+is:featured&sort=help-wanted-issues';
-
-//   fetch(apiUrl).then(function (response) {
-//     if (response.ok) {
-//       response.json().then(function (data) {
-//         displayRepos(data.items, language);
-//       });
-//     } else {
-//       alert('Error: ' + response.statusText);
-//     }
-//   });
-// };
-
-var displayWeather = function (weather) {
-    console.log(weather);
-
-  var cityName = weather.name;
-  var cityTemp = weather.main.temp;
-  var cityWind = weather.wind.speed;
-  var cityHumidity = weather.main.humidity;
-  var weatherEl = document.createElement('h2');
-  var tempEl = document.createElement('div');
-  var windEl = document.createElement('div');
-  var humidityEl = document.createElement('div');
-  weatherEl.classList = 'list-item p-3';
-  tempEl.classList = 'list-item p-3';
-  windEl.classList = 'list-item p-3';
-  humidityEl.classList = 'list-item p-3';
-  var humidity2El = document.createElement('span');
-  var titleEl = document.createElement('span');
-  var temp2El = document.createElement('span');
-  var windSEl = document.createElement('span');
-  titleEl.textContent = cityName;
-  temp2El.textContent = "Temp: " + cityTemp + "°F";
-  windSEl.textContent = "Wind: " + cityWind + " MPH";
-  humidity2El.textContent = "Humidity: " + cityHumidity + " %";
-  weatherEl.appendChild(titleEl);
-  tempEl.appendChild(temp2El);
-  windEl.appendChild(windSEl);
-  humidityEl.appendChild(humidity2El);
-  cityBox.appendChild(weatherEl);
-  cityBox.appendChild(tempEl);
-  cityBox.appendChild(windEl);
-  cityBox.appendChild(humidityEl);
+        .then(function (response) {
+            if (response.ok) {
+                return response.json();
+            } 
+        })
+        .then(function (cityWeather) {
+            var uvUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${cityWeather.coord.lat}&lon=${cityWeather.coord.lon}&appid=${APIkey}`
+            console.log(cityWeather);
+            displayWeather(cityWeather, city);
+            fetch(uvUrl)
+                .then(function (response) {
+                    return response.json();
+                }).then(function (uvdata) {
+                    var uv = uvdata.current.uvi
+                    var uvEl = document.createElement('div');
+                    uvEl.classList = 'list-item p-1';
+                    var uv2El = document.createElement('span');
+                    uv2El.textContent = "UV Index: " + uv;
+                    uvEl.appendChild(uv2El);
+                    cityBox.appendChild(uvEl);
+                })
+        })
 };
 
 var displayForecast = function (forecast) {
     console.log(forecast);
 
-  var forecastTemp = forecast.list[0].main.temp;
-  var forecastWind = forecast.list[0].wind.speed;
-  var forecastHumidity = forecast.list[0].main.humidity;
- 
-  var forecastTempEl = document.createElement('div');
-  var forecastWindEl = document.createElement('div');
-  var forecastHumidityEl = document.createElement('div');
-  
-  forecastTempEl.classList = 'list-item p-3';
-  forecastWindEl.classList = 'list-item p-3';
-  forecastHumidityEl.classList = 'list-item p-3';
- 
-  var forecastTemp2El = document.createElement('span');
-  var forecastWindSEl = document.createElement('span');
-  var forecastHumidity2El = document.createElement('span');
-  
-  forecastTemp2El.textContent = "Temp: " + forecastTemp + "°F";
-  forecastWindSEl.textContent = "Wind: " + forecastWind + " MPH";
-  forecastHumidity2El.textContent = "Humidity: " + forecastHumidity + " %";
-  
-  forecastTempEl.appendChild(forecastTemp2El);
-  forecastWindEl.appendChild(forecastWindSEl);
-  forecastHumidityEl.appendChild(forecastHumidity2El);
-  
-  forecastTemp.appendChild(forecastTempEl);
-  forecastWind.appendChild(forecastWindEl);
-  forecastHumidity.appendChild(forecastHumidityEl);
+    var forecastTemp = forecast.list[0].main.temp;
+    var forecastWind = forecast.list[0].wind.speed;
+    var forecastHumidity = forecast.list[0].main.humidity;
+    var forecastIcon = forecast.list[0].weather[0].icon;
+    var forecastTime = moment(forecast.list[0].dt, "X").format("(MM/DD/YY)");
 
+    forecastHumidityEl.textContent = "Humidity: " + forecastHumidity + " %";
+    forecastWindEl.textContent = "Wind: " + forecastWind + " MPH";
+    forecastTempEl.textContent = "Temp: " + forecastTemp + "°F";
+    forecasticonEl.setAttribute('src', `http://openweathermap.org/img/wn/${forecastIcon}@2x.png`);
+    forecastTimeEl.textContent = forecastTime;
+
+    var forecastTemp1 = forecast.list[8].main.temp;
+    var forecastWind1 = forecast.list[8].wind.speed;
+    var forecastHumidity1 = forecast.list[8].main.humidity;
+    var forecastIcon1 = forecast.list[8].weather[0].icon;
+    var forecastTime1 = moment(forecast.list[8].dt, "X").format("(MM/DD/YY)");
+
+    forecastHumidityEl1.textContent = "Humidity: " + forecastHumidity1 + " %";
+    forecastWindEl1.textContent = "Wind: " + forecastWind1 + " MPH";
+    forecastTempEl1.textContent = "Temp: " + forecastTemp1 + "°F";
+    forecasticonEl1.setAttribute('src', `http://openweathermap.org/img/wn/${forecastIcon1}@2x.png`);
+    forecastTimeEl1.textContent = forecastTime1;
+
+    var forecastTemp2 = forecast.list[16].main.temp;
+    var forecastWind2 = forecast.list[16].wind.speed;
+    var forecastHumidity2 = forecast.list[16].main.humidity;
+    var forecastIcon2 = forecast.list[16].weather[0].icon;
+    var forecastTime2 = moment(forecast.list[16].dt, "X").format("(MM/DD/YY)");
+
+    forecastHumidityEl2.textContent = "Humidity: " + forecastHumidity2 + " %";
+    forecastWindEl2.textContent = "Wind: " + forecastWind2 + " MPH";
+    forecastTempEl2.textContent = "Temp: " + forecastTemp2 + "°F";
+    forecasticonEl2.setAttribute('src', `http://openweathermap.org/img/wn/${forecastIcon2}@2x.png`);
+    forecastTimeEl2.textContent = forecastTime2;
+
+    var forecastTemp3 = forecast.list[24].main.temp;
+    var forecastWind3 = forecast.list[24].wind.speed;
+    var forecastHumidity3 = forecast.list[24].main.humidity;
+    var forecastIcon3 = forecast.list[24].weather[0].icon;
+    var forecastTime3 = moment(forecast.list[24].dt, "X").format("(MM/DD/YY)");
+
+    forecastHumidityEl3.textContent = "Humidity: " + forecastHumidity3 + " %";
+    forecastWindEl3.textContent = "Wind: " + forecastWind3 + " MPH";
+    forecastTempEl3.textContent = "Temp: " + forecastTemp3 + "°F";
+    forecasticonEl3.setAttribute('src', `http://openweathermap.org/img/wn/${forecastIcon3}@2x.png`);
+    forecastTimeEl3.textContent = forecastTime3;
+
+    var forecastTemp4 = forecast.list[32].main.temp;
+    var forecastWind4 = forecast.list[32].wind.speed;
+    var forecastHumidity4 = forecast.list[32].main.humidity;
+    var forecastIcon4 = forecast.list[32].weather[0].icon;
+    var forecastTime4 = moment(forecast.list[32].dt, "X").format("(MM/DD/YY)");
+
+    forecastHumidityEl4.textContent = "Humidity: " + forecastHumidity4 + " %";
+    forecastWindEl4.textContent = "Wind: " + forecastWind4 + " MPH";
+    forecastTempEl4.textContent = "Temp: " + forecastTemp4 + "°F";
+    forecasticonEl4.setAttribute('src', `http://openweathermap.org/img/wn/${forecastIcon4}@2x.png`);
+    forecastTimeEl4.textContent = forecastTime4;
+};
+
+var getForecast = function (city) {
+    var forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=" + APIkey;
+
+    fetch(forecastUrl)
+        .then(function (response) {
+            if (response.ok) {
+                return response.json();
+            } else {
+                console.log('Error: ' + response.statusText);
+            }
+        })
+        .then(function (cityForecast) {
+            displayForecast(cityForecast);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+};
+
+var displayWeather = function (weather) {
+    cityBox.innerHTML = "";
+
+    var cityName = weather.name;
+    var cityIcon = weather.weather[0].icon;
+    var cityTemp = weather.main.temp;
+    var cityWind = weather.wind.speed;
+    var cityHumidity = weather.main.humidity;
+    var cityTime = moment(weather.dt, "X").format("(MM/DD/YY)");
+
+    var weatherEl = document.createElement('h2');
+    var iconEl = document.createElement('img');
+    var tempEl = document.createElement('div');
+    var windEl = document.createElement('div');
+    var humidityEl = document.createElement('div');
+
+    iconEl.setAttribute('src', `http://openweathermap.org/img/wn/${cityIcon}@2x.png`);
+
+    weatherEl.classList = 'list-item p-1';
+    tempEl.classList = 'list-item p-1';
+    windEl.classList = 'list-item p-1';
+    humidityEl.classList = 'list-item p-1';
+
+    var humidity2El = document.createElement('span');
+    var nameEl = document.createElement('span');
+    var temp2El = document.createElement('span');
+    var windSEl = document.createElement('span');
+
+    nameEl.textContent = cityName + " " + cityTime;
+    temp2El.textContent = "Temp: " + cityTemp + "°F";
+    windSEl.textContent = "Wind: " + cityWind + " MPH";
+    humidity2El.textContent = "Humidity: " + cityHumidity + " %";
+
+    weatherEl.appendChild(nameEl);
+    tempEl.appendChild(temp2El);
+    windEl.appendChild(windSEl);
+    humidityEl.appendChild(humidity2El);
+
+    cityBox.appendChild(weatherEl);
+    cityBox.appendChild(iconEl);
+    cityBox.appendChild(tempEl);
+    cityBox.appendChild(windEl);
+    cityBox.appendChild(humidityEl);
 
 };
 
 submitBtn.addEventListener('click', formSubmitHandler);
-// languageButtonsEl.addEventListener('click', buttonClickHandler);

@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Document</title>
 </head>
 
@@ -18,7 +17,7 @@
     <div class="row">
     <div class="col-4 min-100-vh">
         <div class="flex-column align-center bg-light p-5">
-            <h2 class="" id="searchText">Search for a City:</h2>
+            <h2 id="searchText">Search for a City:</h2>
             <form id="search-form" class="form">
                 <input id="cityInput" class="form-input" type="text" placeholder="Charlotte">
                 <button id="submitBtn" class="btn btn-info">Search</button>
@@ -27,27 +26,60 @@
     </div>
         <div class="col-8 text-dark border border-dark bg-white">
             <h2 id="result-text"></h2>
-            <div id="cityWeather"></div>
+            <div id="cityWeather">
+                <div>
+                    
+                </div>
+            </div>
         </div>
         <div class="col-4 text-dark">
             <div class="flex-column justify-content-center p-5 border-top border-dark" id="searchHistory">
-                <button>Las Vegas</button>
-                <button>Las Vegas</button>
-                <button>Las Vegas</button>
-                <button>Las Vegas</button>
-                <button>Las Vegas</button>
+               
             </div>
         </div>
         <div class="col-8 text-dark">
             <h2>5-Day Forecast:</h2>
             <div class="row">
-            <div class="card col" id="forecastTemp"></div>
-            <div class="card col" id="forecastWind"></div>
-            <div class="card col" id="forecastHumidity"></div>
+            <div class="card col">
+                <h3 class="forecastTime0 list-item p-2"></h3>
+                <img class="forecastIcon0 list-item p-2" />
+                <p class="forecastTemp0 list-item p-2"></p>
+                <p class="forecastWind0 list-item p-2"></p>
+                <p class="forecastHumidity0 list-item p-2"></p>
+            </div>
+            <div class="card col">
+                <h3 class="forecastTime1 list-item p-2"></h3>
+                <img class="forecastIcon1 list-item p-2" />
+                <p class="forecastTemp1 list-item p-2"></p>
+                <p class="forecastWind1 list-item p-2"></p>
+                <p class="forecastHumidity1 list-item p-2"></p>
+            </div>
+            <div class="card col">
+                <h3 class="forecastTime2 list-item p-2"></h3>
+                <img class="forecastIcon2 list-item p-2" />
+                <p class="forecastTemp2 list-item p-2"></p>
+                <p class="forecastWind2 list-item p-2"></p>
+                <p class="forecastHumidity2 list-item p-2"></p>
+            </div>
+            <div class="card col">
+                <h3 class="forecastTime3 list-item p-2"></h3>
+                <img class="forecastIcon3 list-item p-2" />
+                <p class="forecastTemp3 list-item p-2"></p>
+                <p class="forecastWind3 list-item p-2"></p>
+                <p class="forecastHumidity3 list-item p-2"></p>
+            </div>
+            <div class="card col">
+                <h3 class="forecastTime4 list-item p-2"></h3>
+                <img class="forecastIcon4 list-item p-2" />
+                <p class="forecastTemp4 list-item p-2"></p>
+                <p class="forecastWind4 list-item p-2"></p>
+                <p class="forecastHumidity4 list-item p-2"></p>
+            </div>
         </div>
         </div>
     </div>
     <script src="./assets/js/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 </body>
 
 </html>
